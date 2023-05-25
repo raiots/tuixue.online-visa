@@ -9,12 +9,12 @@ L
 config
 # sync_data.py
 db_playground.py
-logs
+#logs
 ais.json
 crawler*.txt
 extra*.json
 *session*.json
-secret.json
+#secret.json
 
 yarn.lock
 package-lock.json

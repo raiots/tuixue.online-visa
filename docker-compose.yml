@@ -1,0 +1,40 @@
+version: "3.0"
+
+services:
+  visa_backend:
+    image: "online_visa_backend:v0.0.1"  # 镜像名
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: "online_visa_backend"
+    environment:
+      TZ: "Asia/Shanghai"
+    depends_on:   # 容器依赖
+      - mongodb
+
+  visa_api:
+    image:  "online_visa_api:v0.0.1"
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: "online_visa_api"
+    environment:
+      TZ: "Asia/Shanghai"
+
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - ./database:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+
+networks:
+  default:
+    name: visa_network
