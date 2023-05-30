@@ -20,6 +20,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     container_name: "online_visa_api"
+    ports:
+      - "8888:8888"
     environment:
       TZ: "Asia/Shanghai"
 
@@ -28,7 +30,7 @@ services:
     image: mongo
     container_name: mongodb
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - ./database:/data/db
     environment:
