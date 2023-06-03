@@ -25,6 +25,18 @@ services:
     environment:
       TZ: "Asia/Shanghai"
 
+  visa_frontend:
+    image:  "online_visa_frontend:v0.0.1"
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: "online_visa_frontend"
+    ports:
+      - "80:80"
+    environment:
+      TZ: "Asia/Shanghai"
+
 
   mongodb:
     image: mongo
